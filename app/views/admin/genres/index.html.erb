@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-11">
       <h2>ジャンル一覧・追加</h2>
-      <%= form_with model:@genre, url:admin_items, method: :post, local: true do |f| %>
+      <%= form_with model:@genre, url:admin_genres_path, method: :post, local: true do |f| %>
         <div class="form-group">
           <label for="genre_name">ジャンル名</label>
           <%= f.text_field :name %>
