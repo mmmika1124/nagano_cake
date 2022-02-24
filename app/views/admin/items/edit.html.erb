@@ -24,9 +24,11 @@
           <%= f.text_field :price %>
         </div>
         <div class="form-group">
-          <label for="item_price">販売ステータス</label>
+          <label for="item_is_active">販売ステータス</label>
           <span><%= f.radio_button :is_active, "true" %>販売中</span>
           <span><%= f.radio_button :is_active, "false" %>販売停止中</span>
+        </div>
+
         <div class="form-group">
           <%= f.submit '変更を保存', class: "btn btn-success" %>
         </div>

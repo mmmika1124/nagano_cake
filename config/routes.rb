@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  # 管理者用
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   namespace :admin do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
