@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
-  # 管理者用
+
+# 顧客用
+  scope module: 'public' do
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
+  end
+
+  scope module: 'public' do
+    get 'customers/mypage' => 'customers#show'
+    get 'customers/edit'
+    get 'customers/unsubscribe'
+  end
+
+
+# 管理者用
+  namespace :admin do
+    get '/' => 'homes#top'
+  end
+
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
   end

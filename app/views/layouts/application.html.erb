@@ -20,13 +20,16 @@
              <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-dark" %>
            </li>
            <li>
+             <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark" %>
+           </li>
+           <li>
+             <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-dark" %>
            </li>
            <li>
              <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark" %>
            </li>
            <li>
-           </li>
-           <li>
+             <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-outline-dark" %>
            </li>
          </ul>
         </div>
