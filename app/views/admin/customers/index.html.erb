@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+      <h3>会員一覧</h3>
+    </div>
     <div class="col-md-11">
-      <h2>会員一覧</h2>
       <table class="table">
         <thead>
-          <tr>
+          <tr style="background-color: #DDDDDD;">
             <th>会員ID</th>
             <th>氏名</th>
             <th>メールアドレス</th>
@@ -19,11 +21,11 @@
               <td><%= customer.email %></td>
               <td>
                 <% if customer.is_active == true %>
-                  <div class="text-success">
+                  <div class="text-success font-weight-bold">
                     有効
                   </div>
                 <% else %>
-                  <div class="text-muted">
+                  <div class="text-muted font-weight-bold">
                     退会
                   </div>
                 <% end %>
@@ -32,6 +34,8 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+    <div class="mx-auto">
       <%= paginate @customers %>
     </div>
   </div>

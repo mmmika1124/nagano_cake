@@ -14,24 +14,52 @@
     <header>
       <nav class="navbar navbar-expand-lg ">
         <div class="container">
-         <span>ながのCAKE</span>
-         <ul class = "navbar-nav ml-auto">
-           <li>
-             <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-dark" %>
-           </li>
-           <li>
-             <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark" %>
-           </li>
-           <li>
-             <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-dark" %>
-           </li>
-           <li>
-             <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark" %>
-           </li>
-           <li>
-             <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-outline-dark" %>
-           </li>
-         </ul>
+          <span>ながのCAKE</span>
+          <ul class = "navbar-nav ml-auto m-3">
+            <% if customer_signed_in? %>
+              <li class="mr-3">
+                <%= link_to "マイページ", customers_mypage_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                <%= link_to "商品一覧", items_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                カート
+              </li>
+              <li class="mr-3">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-dark" %>
+              </li>
+            <% elsif admin_signed_in? %>
+              <li class="mr-3">
+                <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark" %>
+              </li>
+            <% else %>
+              <li class="mr-3">
+                <%= link_to "About", about_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                商品一覧
+              </li>
+              <li class="mr-3">
+                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
+                <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-dark" %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </nav>
     </header>
@@ -41,9 +69,10 @@
     </main>
 
     <footer>
-      <div class="container mt-5">
+      <div class="container mt-3 mb-3">
         <div class="row">
           <div class="mx-auto">
+            CopyRight nagano_cake
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-# 顧客用
+ # 顧客用
   scope module: 'public' do
     root to: 'homes#top'
     get 'about' => 'homes#about'
@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     get 'customers/mypage' => 'customers#show'
     get 'customers/edit'
     get 'customers/unsubscribe'
+  end
+
+   scope module: 'public' do
+    get 'items' => 'items#index'
+    get 'items/show'
   end
 
 
