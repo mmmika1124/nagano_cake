@@ -14,7 +14,9 @@
     <header>
       <nav class="navbar navbar-expand-lg ">
         <div class="container">
-          <span>ながのCAKE</span>
+          <%= link_to  "/" do %>
+            <%= image_tag "sweets_funnelcake.png", size: "50x50" %>
+          <% end %>
           <ul class = "navbar-nav ml-auto m-3">
             <% if customer_signed_in? %>
               <li class="mr-3">
