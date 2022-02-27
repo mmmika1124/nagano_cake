@@ -6,20 +6,28 @@
   </div>
 
 <%= form_with model: @admin, url: admin_session_path do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email %>
+  <div class="field row mx-auto">
+    <div class="col-sm-2 col-form-label">
+    <%= f.label :メールアドレス %>
+    </div>
+    <div class="col">
+    <%= f.email_field :email, class:"col-4" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password %>
+  <div class="field row mx-auto">
+    <div class="col-sm-2 col-form-label">
+    <%= f.label :パスワード %>
+    </div>
+    <div class="col">
+    <%= f.password_field :password, class:"col-4" %>
+    </div>
   </div>
 
   <br />
 
-  <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-primary" %>
+  <div class="actions col-sm-2">
+    <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
   </div>
 <% end %>
 
