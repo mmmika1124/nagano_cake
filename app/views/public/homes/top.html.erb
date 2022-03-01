@@ -1,9 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-md-3">
       <%= render 'public/search', genres: @genres%>
     </div>
-    <div class="col-8">
 
+    <div class="col-md-9">
+      <div class="jumbotron">
+        <div class="bg_text text-center">
+          <p>ようこそ、ながのCAKEへ！</p>
+          <p>このサイトは、ケーキ販売のECサイトになります。</p>
+          <p>会員でない方も商品の閲覧はできますが</p>
+          <p>購入には会員登録が必要になります。</p>
+        </div>
+      </div>
+      <div class="row mx-auto">
+      <h3>新着商品</h3>
+      </div>
+      <div class="row">
+      <% @items.first(4).each do |item| %>
+        <div class="col-sm-3">
+          <%= attachment_image_tag item, :image, format: 'jpg', size: "50×50" %></br>
+          <%= item.name %></br>
+          <%= item.price %>円
+        </div>
+      <% end %>
+      </div>
     </div>
-  </div>
