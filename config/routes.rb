@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   scope module: 'public' do
     get 'customers/mypage' => 'customers#show'
     get 'customers/edit'
+    resources :customers, only: [:update]
     get 'customers/unsubscribe'
   end
 
