@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   end
 
    scope module: 'public' do
+     get 'items/:id' => 'items#show', as: 'item'
     get 'items' => 'items#index'
-    get 'items/show'
   end
 
   namespace :public do

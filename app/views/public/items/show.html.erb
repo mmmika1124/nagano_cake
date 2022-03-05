@@ -1,2 +1,21 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/search', genres: @genres%>
+    </div>
+
+    <div class="col-md-4">
+        <%= attachment_image_tag @item, :image, format: 'jpg', size: "200x200" %>
+    </div>
+
+    <div class="col-md-4 ">
+      </br>
+      <h3><%= @item.name %></h3>
+      </br>
+      <div><%= @item.introduction %></div>
+      </br>
+      <div class="font-weight-bold">￥<%= (@item.price * 1.1) .to_i %>（税込）</div>
+
+      <div>個数選択</div>
+      <div>カートに入れる</div>
+    </div>
