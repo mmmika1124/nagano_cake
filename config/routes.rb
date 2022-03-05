@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     get 'items/show'
   end
 
+  namespace :public do
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  end
+
 
 # 管理者用
   namespace :admin do
