@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- # 顧客用
+   # 顧客用
   scope module: 'public' do
     root to: 'homes#top'
     get 'about' => 'homes#about'
@@ -19,8 +19,13 @@ Rails.application.routes.draw do
     get 'items' => 'items#index'
   end
 
-  namespace :public do
+  scope module: 'public' do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  end
+
+  scope module: 'public' do
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   end
 
 

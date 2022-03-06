@@ -14,8 +14,16 @@
       </br>
       <div><%= @item.introduction %></div>
       </br>
-      <div class="font-weight-bold">￥<%= (@item.price * 1.1) .to_i %>（税込）</div>
+      <div class="font-weight-bold">￥<%= (@item.price * 1.1) .to_i.to_s(:delimited) %>（税込）</div>
 
-      <div>個数選択</div>
-      <div>カートに入れる</div>
+      <div>
+        <%= form_with model:@cart_item, url:cart_items_path, method: :POST, local: true do |f| %>
+          <% if customer_signed_in? %>
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <% end %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.select :amount, *[1..10], {include_blank: '--個数選択--'} %>
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        <% end %>
+      </div>
     </div>
