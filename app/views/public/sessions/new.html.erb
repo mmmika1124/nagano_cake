@@ -3,12 +3,12 @@
 <div>会員の方はこちらからログイン</div>
 <%= form_with model: @customer, url: customer_session_path do |f| %>
   <div class="field">
-    <%= f.label :メールアドレス %><br />
+    <%= f.label :メールアドレス %><br/>
     <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :パスワード %><br />
+    <%= f.label :パスワード %><br/>
     <%= f.password_field :password %>
   </div>
 

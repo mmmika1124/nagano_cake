@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-   # 顧客用
+# 顧客用
   scope module: 'public' do
     root to: 'homes#top'
     get 'about' => 'homes#about'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
    scope module: 'public' do
-     get 'items/:id' => 'items#show', as: 'item'
+    get 'items/:id' => 'items#show', as: 'item'
     get 'items' => 'items#index'
   end
 
@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   scope module: 'public' do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
     resources :cart_items, only: [:index, :create, :update, :destroy]
+  end
+
+  scope module: 'public' do
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/thanks' => 'orders#thanks'
+    resources :orders, only: [:new, :index, :show, :create]
   end
 
 

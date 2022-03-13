@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  ra
     <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
       <h3><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h3>
     </div>
@@ -61,10 +61,12 @@
       <label for="customer_is_active" class="col-sm-2 col-form-label">会員ステータス</label>
       <div class="col-sm-10 d-flex align-items-center">
         <div class="form-check form-check-inline">
-          <%= f.radio_button :is_active, "true" %>有効
+          <%= f.radio_button :is_active, "true" %>
+          有効
         </div>
         <div class="form-check form-check-inline">
-          <%= f.radio_button :is_active, "false" %>退会
+          <%= f.radio_button :is_active, "false" %>
+          退会
         </div>
       </div>
     </div>
