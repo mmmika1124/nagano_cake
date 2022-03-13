@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @order.shipping_cost = 800
-    @sum = (@total + @order.shipping_cost).to_s(:delimited)
+    @sum = (@total + @order.shipping_cost)
 
     if params[:order][:select_address] == "0"
       @order.postal_code = @customer.postal_code
@@ -32,25 +32,37 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @cart_items = current_customer.cart_items
     @order.save
-
+    @cart_items.each do |cart_item|
+      order_detail = @order.order_details.new
+      order_detail.item_id = cart_item.item_id
+      order_detail.amount = cart_item.amount
+      order_detail.price = cart_item.item.price * 1.1
+      order_detail.save
+    end
     @cart_items.destroy_all
     redirect_to orders_thanks_path
-
-
   end
 
   def index
+    @customer = current_customer
+    @orders = current_customer.orders
   end
 
   def show
+    @order_detail = OrderDetail.find(params[:id])
   end
 
   private
 
   def order_params
       params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method)
+  end
+
+  def order_detail_params
+      params.require(:order_detail).permit(:price, :amount)
   end
 
 end

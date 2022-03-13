@@ -43,7 +43,7 @@
           </tr>
           <tr>
           <th style="background-color: #DDDDDD;">請求金額</th>
-          <td><%= @sum %></td>
+          <td><%= @sum.to_s(:delimited) %></td>
           </tr>
         </tbody>
       </table>
@@ -83,13 +83,13 @@
       <%= f.hidden_field :name, value: @order.name %>
       <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
       <%= f.hidden_field :total_payment, value: @sum %>
-      <%= f.hidden_field :payment_method, value:  @order.payment_method %>
+      <%= f.hidden_field :payment_method, value: @order.payment_method %>
 
       <div class="row">
         <div class="mx-auto">
           <%= f.submit '注文を確定する', class: "btn btn-success" %>
         </div>
       </div>
-
     <% end %>
+</br>
 
