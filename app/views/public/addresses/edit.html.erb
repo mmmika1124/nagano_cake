@@ -1,10 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto mb-3 bg-light">
       <h3>配送先編集</h3>
     </div>
+    <div class="col-md-8">
+    </div>
   </div>
-
   </br>
 
   <%= form_with model:@address, url:address_path, method: :PATCH, local: true do |f| %>
@@ -13,25 +14,21 @@
       <div class="col-sm-8">
         <%= f.text_field :postal_code %>
       </div>
-
       </br>
-
       <label for="address", class="col-sm-3 col-form-label">住所</label>
       <div class="col-sm-8">
         <%= f.text_field :address, class:"col-7" %>
       </div>
-
       </br>
-
       <label for="name", class="col-sm-3 col-form-label">宛名</label>
       <div class="col-sm-8">
         <%= f.text_field :name %>
       </div>
-
       </br>
-
+      </br>
       <div class="col-sm-2 d-flex align-items-center">
-        <%= f.submit '変更内容を保存', class: "btn btn-success btn-block" %>
+        <%= f.submit '変更内容を保存', class: "btn btn-success btn-sm btn-block" %>
       </div>
     </div>
   <% end %>
+</div>

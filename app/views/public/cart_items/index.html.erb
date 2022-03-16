@@ -1,35 +1,38 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-3 mb-3 bg-light">
       <h3>ショッピングカート</h3>
     </div>
-    <div class="col mb-3 text-right">
+    <div class="col-md-5">
+    </div>
+    <div class="col col-md-3 mb-3text-right">
       <%= link_to "カートを空にする", destroy_all_path, method: :DELETE , class: "btn btn-danger" %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-11">
-      <table class="table">
-        <thead style="background-color: #DDDDDD;">
+      <table class="table table-bordered">
+        <thead class="bg-light">
           <tr>
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th></th>
+            <th style="width: 40%">商品名</th>
+            <th style="width: 15%">単価(税込)</th>
+            <th style="width: 15%">数量</th>
+            <th style="width: 15%">小計</th>
+            <th style="width: 15%"></th>
           </th>
         </thead>
         <tbody>
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
-                <%= attachment_image_tag cart_item.item, :image, format: 'jpg', size: "50x50" %>
+                <%= attachment_image_tag cart_item.item, :image, format: 'jpg', size: "50x50", class: "mr-3" %>
                 <%= cart_item.item.name %>
               </td>
               <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
               <td>
                 <%= form_with model:@cart_item, url:cart_item_path(cart_item.id), method: :PATCH, local: true do |f| %>
-                  <%= f.select :amount, *[1..10], {selected: cart_item.amount} %>
+                  <%= f.select :amount, *[1..10], {selected: cart_item.amount}, class: "mr-3" %>
                   <%= f.submit "変更", class: "btn btn-success" %>
                 <% end %>
               </td>
@@ -40,19 +43,25 @@
         </tbody>
       </table>
     </div>
-    <div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-3 mb-3">
       <%= link_to "買い物を続ける",root_path, class: "btn btn-primary" %>
     </div>
-    <div>
-      <table class="table">
+    <div class="col-md-5">
+    </div>
+    <div class="col col-md-3">
+      <table class="table table table-bordered">
         <tbody>
-          <th>合計金額</th>
-          <td><%= @total.round.to_s(:delimited) %></td>
+          <th class="bg-light" style="width: 50%" >合計金額</th>
+          <td style="width: 50%"><%= @total.round.to_s(:delimited) %></td>
         </tbody>
       </table>
     </div>
   </div>
   </br>
+
   <div class="row">
     <div class="mx-auto">
       <%= link_to "情報入力に進む",new_order_path, class: "btn btn-success" %>

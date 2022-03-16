@@ -1,10 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto mb-3 bg-light">
       <h3>配送先登録/一覧</h3>
     </div>
+    <div class="col-md-8">
+    </div>
   </div>
-
   </br>
 
   <%= form_with model:@address, url:addresses_path, method: :POST, local: true do |f| %>
@@ -13,25 +14,20 @@
       <div class="col-sm-8">
         <%= f.text_field :postal_code %>
       </div>
-
       </br>
-
       <label for="address", class="col-sm-3 col-form-label">住所</label>
       <div class="col-sm-8">
         <%= f.text_field :address, class:"col-7" %>
       </div>
-
       </br>
-
       <label for="name", class="col-sm-3 col-form-label">宛名</label>
       <div class="col-sm-8">
         <%= f.text_field :name %>
       </div>
-
       </br>
-
+      </br>
       <div class="col-sm-2 d-flex align-items-center">
-        <%= f.submit '新規登録', class: "btn btn-success btn-block" %>
+        <%= f.submit '新規登録', class: "btn btn-success btn-sm btn-block" %>
       </div>
     </div>
   <% end %>
@@ -39,26 +35,28 @@
   </br>
 
   <div class="row">
-  <table class="table col-8">
-    <thead>
-      <th style="background-color: #DDDDDD;">郵便番号</th>
-      <th style="background-color: #DDDDDD;">住所</th>
-      <th style="background-color: #DDDDDD;">宛名</th>
-      <th style="background-color: #DDDDDD;"></th>
-    </thead>
-      <tbody>
-        <% @addresses.each do |address| %>
-          <tr>
-            <td><%= address.postal_code %></td>
-            <td><%= address.address %></td>
-            <td><%= address.name %></td>
-            <td>
-              <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
-              <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-  </table>
+    <div class="col-8">
+      <table class="table table-bordered">
+        <thead>
+          <th class="bg-light" style="width: 15%">郵便番号</th>
+          <th class="bg-light" style="width: 35%">住所</th>
+          <th class="bg-light" style="width: 20%">宛名</th>
+          <th class="bg-light" style="width: 30%"></th>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td><%= address.postal_code %></td>
+              <td><%= address.address %></td>
+              <td><%= address.name %></td>
+              <td>
+                <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success btn-sm mr-3" %>
+                <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

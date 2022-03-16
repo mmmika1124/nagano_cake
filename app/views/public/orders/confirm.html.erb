@@ -1,25 +1,28 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto mb-3 bg-light">
       <h3>注文情報確認</h3>
     </div>
+    <div class="col-md-8">
+    </div>
   </div>
+
   <div class="row">
     <div class="col-7">
-      <table class="table table-bordered border-dark">
-        <thead style="background-color: #DDDDDD;">
+      <table class="table table-bordered">
+        <thead class="bg-light">
           <tr>
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
+            <th style="width: 40%">商品名</th>
+            <th style="width: 20%">単価(税込)</th>
+            <th style="width: 20%">数量</th>
+            <th style="width: 20%">小計</th>
           </th>
         </thead>
         <tbody>
           <% @cart_items.each do |cart_item| %>
             <tr>
-              <td>
-                <%= attachment_image_tag cart_item.item, :image, format: 'jpg', size: "50x50" %>
+              <td class="font-weight-bold">
+                <%= attachment_image_tag cart_item.item, :image, format: 'jpg', size: "30x30", class:"mr-3" %>
                 <%= cart_item.item.name %>
               </td>
               <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
@@ -34,21 +37,22 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-          <th style="background-color: #DDDDDD;">送料</th>
-          <td><%= @order.shipping_cost %></td>
+          <th class="bg-light" style="width: 50%">送料</th>
+          <td style="width: 50%"><%= @order.shipping_cost %></td>
           </tr>
           <tr>
-          <th style="background-color: #DDDDDD;">商品合計</th>
-          <td><%= @total.round.to_s(:delimited) %></td>
+          <th class="bg-light" style="width: 50%">商品合計</th>
+          <td style="width: 50%"><%= @total.round.to_s(:delimited) %></td>
           </tr>
           <tr>
-          <th style="background-color: #DDDDDD;">請求金額</th>
-          <td><%= @sum.to_s(:delimited) %></td>
+          <th class="bg-light" style="width: 50%">請求金額</th>
+          <td style="width: 50%"><%= @sum.to_s(:delimited) %></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  </br>
   <div class="row">
     <table class="col-6">
       <tr>

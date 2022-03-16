@@ -1,29 +1,37 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= render 'public/search', genres: @genres%>
     </div>
-
+    <div class="col-md-1">
+    </div>
     <div class="col-md-4">
         <%= attachment_image_tag @item, :image, format: 'jpg', size: "200x200" %>
     </div>
 
-    <div class="col-md-4 ">
+    <div class="col-md-5 ">
       </br>
-      <h3><%= @item.name %></h3>
+      <h4 class="font-weight-bold"><%= @item.name %></h4>
       </br>
       <div><%= @item.introduction %></div>
       </br>
-      <div class="font-weight-bold">￥<%= (@item.price * 1.1) .to_i.to_s(:delimited) %>（税込）</div>
+      <div class="row mx-auto">
+        <h5 class="font-weight-bold">
+          ￥<%= (@item.price * 1.1) .to_i.to_s(:delimited) %>
+        </h5>
+        <h6 class="d-flex align-items-end">（税込）</h6>
+      </div>
+      </br>
 
-      <div>
         <%= form_with model:@cart_item, url:cart_items_path, method: :POST, local: true do |f| %>
           <% if customer_signed_in? %>
             <%= f.hidden_field :customer_id, :value => current_customer.id %>
           <% end %>
           <%= f.hidden_field :item_id, :value => @item.id %>
-          <%= f.select :amount, *[1..10], {include_blank: '--個数選択--'} %>
+          <%= f.select :amount, *[1..10], {include_blank: '--個数選択--'}, class: "mr-5" %>
           <%= f.submit "カートに入れる", class: "btn btn-success" %>
         <% end %>
-      </div>
+
     </div>
+  </div>
+</div>

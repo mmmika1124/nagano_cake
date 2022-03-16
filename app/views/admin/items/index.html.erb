@@ -1,51 +1,56 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto mb-3 bg-light">
       <h3>商品一覧</h3>
     </div>
-    <div class="col mb-3 text-right">
+    <div class="col-md-5">
+    </div>
+    <div class="col col-md-3 mb-3 text-right">
       <%= link_to "＋", new_admin_item_path, class: "btn btn-outline-dark" %>
     </div>
   </div>
+
   <div class="row">
-    <div class="col-md-11">
-    <table class="table">
-      <thead style="background-color: #DDDDDD;">
-        <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>税抜価格</th>
-          <th>ジャンル</th>
-          <th></th>
-          <th></th>
-          <th>ステータス</th>
-        </th>
-      </thead>
-      <tbody>
-        <% @items.each do |item| %>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <table class="table">
+        <thead class="bg-light">
           <tr>
-            <td><%= item.id %></td>
-            <td><%= link_to item.name, admin_item_path(item.id) %></td>
-            <td><%= item.price.to_s(:delimited) %></td>
-            <td><%= item.genre.name %></td>
-            <td></td>
-            <td></td>
-            <td>
-              <% if item.is_active == true %>
-                <div class="text-success font-weight-bold">
-                  販売中
-                </div>
-              <% else %>
-                <div class="text-muted font-weight-bold">
-                  販売停止中
-                </div>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th></th>
+            <th></th>
+            <th>ステータス</th>
+          </th>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, admin_item_path(item.id) %></td>
+              <td><%= item.price.to_s(:delimited) %></td>
+              <td><%= item.genre.name %></td>
+              <td></td>
+              <td></td>
+              <td>
+                <% if item.is_active == true %>
+                  <div class="text-success font-weight-bold">
+                    販売中
+                  </div>
+                <% else %>
+                  <div class="text-muted font-weight-bold">
+                    販売停止中
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+    <div class="col-md-1"></div>
   </div>
   <div class="row">
     <div class="mx-auto">

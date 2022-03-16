@@ -1,43 +1,49 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-auto mb-3" style="background-color: #DDDDDD;">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto mb-3 bg-light">
       <h3>注文履歴画面</h3>
+    </div>
+    <div class="col-md-8">
     </div>
   </div>
 
   <div class="col-md-11">
-      <table class="table table-bordered border-dark">
-        <thead>
-          <tr style="thead-light">
-            <th>注文日</th>
-            <th>配送先</th>
-            <th>注文商品</th>
-            <th>支払金額</th>
-            <th>ステータス</th>
-            <th>注文詳細</th>
-          </th>
-        </thead>
-        <tbody>
-          <% @orders.each do |order| %>
-            <tr>
-              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-              <td>
-                <%= order.postal_code %>
-                <%= order.address %>
+    <table class="table table-bordered">
+      <thead class="bg-light">
+        <tr>
+          <th style="width: 10%">注文日</th>
+          <th style="width: 35%">配送先</th>
+          <th style="width: 15%">注文商品</th>
+          <th style="width: 10%">支払金額</th>
+          <th style="width: 10%">ステータス</th>
+          <th style="width: 10%">注文詳細</th>
+        </th>
+      </thead>
+      <tbody class ="table-sm">
+        <% @orders.each do |order| %>
+          <tr>
+            <td>
+              <%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              〒<%= order.postal_code %>
+              </br>
+              <%= order.address %>
+              </br>
+              <%= order.name %>
+            </td>
+            <td>
+              <% order.order_details.each do |order_detail| %>
+                <%= order_detail.item.name %>
                 </br>
-                <%= order.name %>
-              </td>
-              <td>
-                <% order.order_details.each do |order_detail| %>
-                  <%= order_detail.item.name %>
-                  </br>
-                <% end %>
-              </td>
-              <td><%= order.total_payment.to_s(:delimited) + "円" %></td>
-              <td><%= order.status_i18n %></td>
-              <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+              <% end %>
+            </td>
+            <td><%= order.total_payment.to_s(:delimited) + "円" %></td>
+            <td><%= order.status_i18n %></td>
+            <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  </br>
+</div>
