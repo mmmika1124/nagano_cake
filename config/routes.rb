@@ -49,6 +49,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
   end
+  namespace :admin do
+    resources :orders, only: [:show, :update]
+    get 'orders/show'
+  end
 
 # 顧客用
 # URL /customers/sign_in ...

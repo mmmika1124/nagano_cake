@@ -13,29 +13,19 @@
       <table class="table">
         <thead class="bg-light">
           <tr>
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
+            <th style="width: 30%">購入日時</th>
+            <th style="width: 30%">購入者</th>
+            <th style="width: 20%">注文個数</th>
+            <th style="width: 20%">注文ステータス</th>
           </th>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
+          <% @orders.each do |order| %>
             <tr>
-              <td><%= customer.id %></td>
-              <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id) %></td>
-              <td><%= customer.email %></td>
-              <td>
-                <% if customer.is_active == true %>
-                  <div class="text-success font-weight-bold">
-                    有効
-                  </div>
-                <% else %>
-                  <div class="text-muted font-weight-bold">
-                    退会
-                  </div>
-                <% end %>
-              </td>
+              <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"),admin_order_path(order.id) %></td>
+              <td><%= order.name %></td>
+              <td></td>
+              <td><%= order.status_i18n %></td>
             </tr>
           <% end %>
         </tbody>
@@ -45,7 +35,7 @@
   </div>
   <div class="row">
     <div class="mx-auto">
-      <%= paginate @customers %>
+      <%= paginate @orders %>
     </div>
   </div>
 </div>
