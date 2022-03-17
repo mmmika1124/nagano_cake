@@ -8,41 +8,93 @@
   </div>
 
   <div class="row">
-    <table class="table table-borderless table-sm col-4">
+    <table class="table table-borderless table-sm col-8">
       <tr>
-        <th class="col-sm-2">会員ID</th>
-        <td class="col-sm-3" ><%= @order.customer.id %></td>
+        <th style="width: 30%">購入者</th>
+        <td style="width: 70%">
+          <%= link_to @order.customer.last_name + @order.customer.first_name, admin_customer_path(@order.customer.id) %>
+        </td>
       </tr>
       <tr>
-        <th class="col-sm-2">注文日</th>
-        <td class="col-sm-3" ><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+        <th>注文日</th>
+        <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
       </tr>
       <tr>
-        <th class="col-sm-2">配送先</th>
-        <td class="col-sm-3" >
+        <th>配送先</th>
+        <td>
           〒<%= @order.postal_code %>
           　<%= @order.address %>
         </td>
       </tr>
       <tr>
-        <th class="col-sm-2"></th>
-        <td class="col-sm-3" >
+        <th></th>
+        <td>
           <%= @order.name %>
         </td>
       </tr>
       <tr>
-        <th class="col-sm-2">支払方法</th>
-        <td class="col-sm-3" >
+        <th>支払方法</th>
+        <td>
           <%= @order.payment_method_i18n %>
         </td>
       </tr>
       <tr>
-        <th class="col-sm-2">注文ステータス</th>
-        <td class="col-sm-3" >
-          <%= @order.status_i18n %>
+        <th>注文ステータス</th>
+        <td>
+          <%= form_with model:@order, url:admin_order_path(@order.id), method: :PATCH, local: true do |f| %>
+            <%= f.select :status, Order.statuses_i18n.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+            <%= f.submit "更新", class: "btn btn-success ml-3 btn-sm" %>
+          <% end %>
         </td>
       </tr>
-
     </table>
   </div>
   </br>
+  <div class="row">
+    <table class="table table-sm col-7">
+      <thead class="bg-light">
+          <tr>
+            <th style="width: 25%">商品名</th>
+            <th style="width: 15%">単価(税込)</th>
+            <th style="width: 15%">数量</th>
+            <th style="width: 15%">小計</th>
+            <th style="width: 20%">製作ステータス</th>
+            <th style="width: 10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.price.to_s(:delimited) %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= (order_detail.price * order_detail.amount).to_s(:delimited) %></td>
+              <td>
+                <%= form_with model:order_detail, url:admin_order_detail_path(order_detail.id), method: :PATCH, local: true do |f| %>
+                  <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map{|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+              </td>
+              <td>
+                  <%= f.submit "更新", class: "btn btn-success ml-3 btn-sm" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="col-1">
+      </div>
+      <table class="table table-borderless table-sm col-3">
+        <tbody>
+          <tr>
+            <th class="bg-light" style="width: 50%">商品合計</th>
+            <td style="width: 50%"><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>円</td>
+          </tr>
+          <tr>
+          <th class="bg-light" style="width: 50%">送料</th>
+          <td style="width: 50%"><%= @order.shipping_cost %>円</td>
+          </tr>
+          <th class="bg-light">請求金額合計</th>
+          <td><%= @order.total_payment.to_s(:delimited) %>円</td>
+          </tr>
+      </table>
+    </div>

@@ -46,8 +46,8 @@
           <td style="width: 50%"><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
           </tr>
           <tr>
-          <th class="bg-light" style="width: 50%">配送料</th>
-          <td style="width: 50%"><%= @order.shipping_cost %></td>
+          <th class="bg-light">配送料</th>
+          <td><%= @order.shipping_cost %></td>
           </tr>
           <tr>
           <th class="bg-light">ご請求額</th>

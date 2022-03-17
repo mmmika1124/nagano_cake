@@ -51,7 +51,9 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :orders, only: [:show, :update]
-    get 'orders/show'
+  end
+  namespace :admin do
+    resources :order_details, only: [:update]
   end
 
 # 顧客用
