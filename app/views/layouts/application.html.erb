@@ -19,6 +19,9 @@
           <% end %>
           <ul class = "navbar-nav ml-auto m-3">
             <% if customer_signed_in? %>
+              <li class="d-flex align-items-center mr-5">
+                ようこそ、<%= current_customer.last_name %>さん！
+              </li>
               <li class="mr-3">
                 <%= link_to "マイページ", customers_mypage_path, class: "btn btn-outline-dark" %>
               </li>
@@ -62,6 +65,9 @@
               </li>
             <% end %>
           </ul>
+          <%= form_tag do %>
+            <%= text_field_tag :search, "Search" %>
+          <% end %>
         </div>
       </nav>
     </header>

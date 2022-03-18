@@ -6,7 +6,7 @@
     <div class="col-md-5">
     </div>
     <div class="col col-md-3 mb-3text-right">
-      <%= link_to "カートを空にする", destroy_all_path, method: :DELETE , class: "btn btn-danger" %>
+      <%= link_to "カートを空にする", destroy_all_path, method: :DELETE , class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"}  %>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
                 <%= cart_item.subtotal.to_s(:delimited) %>
               </td>
               <td>
-                <%= link_to "削除する", cart_item_path(cart_item.id), method: :DELETE , class: "btn btn-danger" %>
+                <%= link_to "削除する", cart_item_path(cart_item.id), method: :DELETE , class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"}  %>
               </td>
             </tr>
           <% end %>

@@ -8,6 +8,12 @@
   </div>
   </br>
 
+  <div class="text-danger">
+    <% if @genre.errors.any? %>
+      エラーが発生しました
+    <% end %>
+  </div>
+
   <%= form_with model:@genre, url:admin_genre_path, method: :PATCH, local: true do |f| %>
     <div class="form-group row">
       <label for="genre_name", class="col-sm-2 col-form-label font-weight-bold">ジャンル名</label>

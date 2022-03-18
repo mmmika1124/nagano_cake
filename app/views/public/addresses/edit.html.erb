@@ -8,6 +8,12 @@
   </div>
   </br>
 
+  <div class="text-danger">
+    <% if @address.errors.any? %>
+      エラーが発生しました
+    <% end %>
+  </div>
+
   <%= form_with model:@address, url:address_path, method: :PATCH, local: true do |f| %>
     <div class="form-group row">
       <label for="postal_code", class="col-sm-3 col-form-label">郵便番号(ハイフンなし)</label>

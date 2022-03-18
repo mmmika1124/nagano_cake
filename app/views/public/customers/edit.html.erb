@@ -7,6 +7,12 @@
     </div>
   </div>
 
+  <div class="text-danger">
+    <% if @customer.errors.any? %>
+      エラーが発生しました
+    <% end %>
+  </div>
+
   <%= form_with model:@customer, url:customers_mypage_path, method: :PATCH, local: true do |f| %>
 
     <div class="form-group row">

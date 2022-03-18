@@ -7,6 +7,12 @@
     </div>
   </div>
 
+  <div class="text-danger">
+    <% if @item.errors.any? %>
+      エラーが発生しました
+    <% end %>
+  </div>
+
   <%= form_with model:@item, url:admin_item_path, method: :PATCH, local: true do |f| %>
     <div class="form-group row">
       <label for="image" class="col-sm-2 col-form-label">商品画像</label>

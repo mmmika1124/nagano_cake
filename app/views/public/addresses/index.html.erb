@@ -8,6 +8,12 @@
   </div>
   </br>
 
+  <div class="text-danger">
+    <% if @address.errors.any? %>
+      エラーが発生しました
+    <% end %>
+  </div>
+
   <%= form_with model:@address, url:addresses_path, method: :POST, local: true do |f| %>
     <div class="form-group row">
       <label for="postal_code", class="col-sm-3 col-form-label">郵便番号(ハイフンなし)</label>
@@ -51,7 +57,7 @@
               <td><%= address.name %></td>
               <td>
                 <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success btn-sm mr-3" %>
-                <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger btn-sm" %>
+                <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "本当に削除してもよろしいですか？"} %>
               </td>
             </tr>
           <% end %>
