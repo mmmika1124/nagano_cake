@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   has_many :order_details, dependent: :destroy
 
   validates :name, presence: true
-  validates :image_id, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
 
